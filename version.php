@@ -25,7 +25,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'qformat_canvas';
-$plugin->version   = 2018050100;
+$plugin->version   = 2024030600;
 $plugin->requires  = 2013050100;
-$plugin->release   = '1.03';
-$plugin->maturity  = MATURITY_ALPHA;
+$plugin->release   = '1.04';
+$plugin->maturity  = MATURITY_BETA;
