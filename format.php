@@ -127,6 +127,7 @@ class qformat_canvas extends qformat_based_on_xml {
                 array('#', 'itemmetadata', 0, '#', 'qtimetadata', 0, '#', 'qtimetadatafield'),
                 false, false);
         $rawquestion->qtype = $this->find_metadata($meta, 'question_type');
+        $rawquestion->atype = $this->find_metadata($meta, 'answer_type'); //For Cloze type questions where multiple-answers are fill-in-the-blank
         $rawquestion->defaultmark = $this->find_metadata($meta, 'points_possible', 1);
         $rawquestion->title = $this->cleaninput($this->getpath($quest,
                 array('@', 'title'),
@@ -1037,6 +1038,11 @@ class qformat_canvas extends qformat_based_on_xml {
         if ($quest->title) {
             $question->name = $this->cleaninput($quest->title);
         } else {
+            // Check if $text is an array and convert as needed
+            if (is_array($text)) {
+                $text = implode(' ', $text);
+	    }
+
             $question->name = $this->create_default_question_name($text,
                     get_string('defaultname', 'qformat_canvas' , $quest->id));
         }
